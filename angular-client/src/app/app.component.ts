@@ -43,4 +43,23 @@ export class AppComponent implements OnInit {
         this.people = people
       })
   }
+
+  // Clear Search Box
+  clearDetails(name, age) {
+    this.http.post(`${this.API}/users`, {name, age})
+      .map(res => res.json())
+      .subscribe(() => {
+        this.getAllPeople();
+      })
+  }
+
+  // Get all users from the API
+  getLeoMember(lci) {
+    this.http.get(`${this.API}/users/:lci`)
+      .map(res => res.json())
+      .subscribe(people => {
+        console.log(people)
+        this.people = people
+      })
+  }
 }
